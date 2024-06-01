@@ -10,14 +10,10 @@ class GetRequester:
 
     def get_response_body(self):
         response = requests.get(self.url)
-        return response.content
+        return response.content #Return the body of the response as a string
 
     def load_json(self):
         response_body = self.get_response_body()
-        try:
-            json_data = response_body.json()
-        except ValueError:
-            # If the response content is not valid JSON, return None
-            json_data = None
-        return json_data
+        return json.loads(response_body) # Parse the JSON response and return it as a Python list or dictionary
+
     
